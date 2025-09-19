@@ -1,0 +1,21 @@
+# opa-auth-policy.yaml
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+  name: reviews-opa-policy
+  namespace: default # Policy must be in the same namespace as the waypoint
+spec:
+  # Target the waypoint proxy itself
+  selector:
+    matchLabels:
+      gateway.istio.io/managed: istio.io-gateway-controller
+  action: CUSTOM
+  provider:
+    # This name MUST match the name from MeshConfig
+    name: opa-authorizer
+  rules:
+    # This rule will cause all requests handled by the waypoint to
+    # be sent to OPA for a decision.
+    - to:
+        - operation:
+            paths: ["*"]

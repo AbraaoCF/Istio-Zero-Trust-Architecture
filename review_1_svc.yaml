@@ -1,0 +1,13 @@
+# reviews-v1-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: reviews-v1
+  namespace: default
+spec:
+  ports:
+  - port: 9080
+    name: http
+  selector:
+    app: reviews
+    version: v1 # Selects ONLY pods with version=v1 label

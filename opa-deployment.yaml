@@ -1,0 +1,50 @@
+# opa-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opa
+  labels:
+    app: opa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: opa
+  template:
+    metadata:
+      labels:
+        app: opa
+    spec:
+      containers:
+        - name: opa
+          image: openpolicyagent/opa:latest-envoy
+          args:
+            - "run"
+            - "--server"
+            - "--addr=:8181"
+            - "--set=plugins.envoy_ext_authz_grpc.addr=:9191"
+            - "--set=decision_logs.console=true"
+            - "/etc/opa/policy.rego"
+          ports:
+            - containerPort: 8181 # For OPA's own API
+            - containerPort: 9191 # For Envoy's gRPC ext_authz
+          volumeMounts:
+            - readOnly: true
+              mountPath: /etc/opa
+              name: opa-policy
+      volumes:
+        - name: opa-policy
+          configMap:
+            name: opa-policy
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: opa
+spec:
+  selector:
+    app: opa
+  ports:
+    - name: grpc-ext-authz
+      port: 9191
+      targetPort: 9191

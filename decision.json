@@ -1,0 +1,99 @@
+{
+    "decision_id": "ac8967a9-8e94-49e5-9c7e-e34175e9764b",
+    "error": {
+        "message": "undefined decision"
+    },
+    "input": {
+        "attributes": {
+            "destination": {
+                "address": {
+                    "socketAddress": {
+                        "address": "127.0.0.1",
+                        "portValue": 80
+                    }
+                }
+            },
+            "metadataContext": {},
+            "request": {
+                "http": {
+                    "headers": {
+                        ":authority": "localhost:8080",
+                        ":method": "GET",
+                        ":path": "/productpage",
+                        ":scheme": "http",
+                        "accept": "*/*",
+                        "user-agent": "curl/8.5.0",
+                        "x-envoy-decorator-operation": "productpage.default.svc.cluster.local:9080/productpage",
+                        "x-envoy-external-address": "127.0.0.1",
+                        "x-forwarded-for": "10.244.0.46",
+                        "x-forwarded-proto": "http",
+                        "x-request-id": "fa57d6d5-74b4-443b-a698-4564a884462e",
+                        "x-user": "admin"
+                    },
+                    "host": "localhost:8080",
+                    "id": "4662008592775273521",
+                    "method": "GET",
+                    "path": "/productpage",
+                    "protocol": "HTTP/1.1",
+                    "scheme": "http"
+                },
+                "time": {
+                    "nanos": 137037000,
+                    "seconds": 1758072518
+                }
+            },
+            "routeMetadataContext": {},
+            "source": {
+                "address": {
+                    "socketAddress": {
+                        "address": "127.0.0.1",
+                        "portValue": 36668
+                    }
+                }
+            }
+        },
+        "parsed_body": null,
+        "parsed_path": [
+            "productpage"
+        ],
+        "parsed_query": {},
+        "truncated_body": false,
+        "version": [
+            [
+                {
+                    "type": "string",
+                    "value": "encoding"
+                },
+                {
+                    "type": "string",
+                    "value": "protojson"
+                }
+            ],
+            [
+                {
+                    "type": "string",
+                    "value": "ext_authz"
+                },
+                {
+                    "type": "string",
+                    "value": "v3"
+                }
+            ]
+        ]
+    },
+    "labels": {
+        "id": "0296b34e-038b-4440-81e6-feec3d94044d",
+        "version": "1.8.0"
+    },
+    "level": "info",
+    "metrics": {
+        "timer_rego_external_resolve_ns": 300,
+        "timer_rego_query_eval_ns": 17999,
+        "timer_server_handler_ns": 190925
+    },
+    "msg": "Decision Log",
+    "path": "envoy/authz/allow",
+    "time": "2025-09-17T01:28:38Z",
+    "timestamp": "2025-09-17T01:28:38.142618338Z",
+    "type": "openpolicyagent.org/decision_logs"
+}
